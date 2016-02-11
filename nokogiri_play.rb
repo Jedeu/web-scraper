@@ -1,5 +1,7 @@
 require 'nokogiri'  
 
+#Playground/SandBox
+
 doc = Nokogiri::HTML(File.open('post.html'))
 
 def extract_usernames(doc)

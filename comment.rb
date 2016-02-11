@@ -1,4 +1,5 @@
 class Comment
+  attr_reader :id, :comment, :username, :time_or_date_posted
 
   def initialize(id, comment, username, time_or_date_posted)
     @id = id
@@ -6,13 +7,4 @@ class Comment
     @username = username
     @time_or_date_posted = time_or_date_posted
   end
-
-  def has_subcomments?
-    #checks if subcomments exist in comment
-  end
-
-  def show_subcomments
-    #print out subcomment if it has subcomments
-  end
-
 end
