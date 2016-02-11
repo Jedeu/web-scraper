@@ -57,7 +57,9 @@ if ARGV[0][/news.ycombinator.com/]
   puts "Title: #{post.title}"
   puts "ID: #{post.item_id}"
   puts post.points
-
+  puts "Number of comments: #{num_for_loop}"
+  puts "Latest comment: #{post.comments[0].comment}"
+  puts "Time posted: #{post.comments[0].time_or_date_posted}"
 
 
 end
