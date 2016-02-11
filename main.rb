@@ -1,7 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
-require_relative 'post'
-require_relative 'comment'
+require './classes/post'
+require './classes/comment'
 
 if ARGV[0][/news.ycombinator.com/]
 
@@ -27,7 +27,6 @@ if ARGV[0][/news.ycombinator.com/]
   post = Post.new(title, url, points, item_id)
 
   #Parsing Comments instance parameters
-
   array_of_usernames = dom.search('.comhead > a:first-child').map do |username|
     username.inner_text
   end
@@ -40,18 +39,17 @@ if ARGV[0][/news.ycombinator.com/]
     link['href'][/\d+/].to_i
   end
 
-  array_of_comments = dom.search('.comment .c00').map do |comment|
+  array_of_comments = dom.search('.comment > span:first-child').map do |comment|
     comment.inner_text
   end
 
-  num_for_loop = array_of_comments.size
+  num_for_loop = array_of_comments.length
 
   (0..num_for_loop).each do |n|
     comment_object = Comment.new(array_of_ids[n], array_of_comments[n], array_of_usernames[n], array_of_dates_or_times[n])
     post.add_comment(comment_object)
   end
   
-
 
   # Shows various stats of post
   puts "Title: #{post.title}"
